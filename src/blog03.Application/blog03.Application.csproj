@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>blog03</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Identity.Application" Version="6.0.2" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="6.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\blog03.Application.Caching\blog03.Application.Caching.csproj" />
+    <ProjectReference Include="..\blog03.Application.Contracts\blog03.Application.Contracts.csproj" />
+    <ProjectReference Include="..\blog03.Domain.Shared\blog03.Domain.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
