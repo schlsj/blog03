@@ -1,9 +1,16 @@
-﻿using Volo.Abp.Identity;
+﻿using blog03.Application.Caching;
+using blog03.EntityFrameworkCore;
+using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
 
 namespace blog03;
 
 [DependsOn(
+    typeof(blog03EntityFrameworkCoreModule),
+    typeof(blog03DomainSharedModule),
+    typeof(blog03DomainModule),
+    typeof(blog03ApplicationCachingModule),
+    typeof(blog03ApplicationContractsModule),
     typeof(AbpIdentityApplicationModule)
     )]
 public class blog03ApplicationModule : AbpModule

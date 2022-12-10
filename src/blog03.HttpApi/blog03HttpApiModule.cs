@@ -4,6 +4,7 @@ using Volo.Abp.Modularity;
 namespace blog03;
 
 [DependsOn(
+    typeof(blog03ApplicationContractsModule),
     typeof(blog03ApplicationModule),
     typeof(AbpIdentityHttpApiModule)
     )]

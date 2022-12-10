@@ -16,6 +16,8 @@
     <ProjectReference Include="..\blog03.Application.Caching\blog03.Application.Caching.csproj" />
     <ProjectReference Include="..\blog03.Application.Contracts\blog03.Application.Contracts.csproj" />
     <ProjectReference Include="..\blog03.Domain.Shared\blog03.Domain.Shared.csproj" />
+    <ProjectReference Include="..\blog03.Domain\blog03.Domain.csproj" />
+    <ProjectReference Include="..\blog03.EntityFrameworkCore\blog03.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
 </Project>
