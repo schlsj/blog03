@@ -11,6 +11,7 @@ namespace blog03.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [ApiExplorerSettings(GroupName = Grouping.GroupName_v3)]
     public class HelloWorldController:AbpController
     {
         private readonly IHelloWorldService _helloWorldService;

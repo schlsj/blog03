@@ -10,6 +10,7 @@ namespace blog03.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [ApiExplorerSettings(GroupName = Grouping.GroupName_v1)]
     public class BlogController : AbpController
     {
         private readonly IBlogService _blogService;
