@@ -1,5 +1,6 @@
 ﻿using blog03.blog;
 using blog03.ToolKits.Base;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -21,6 +22,7 @@ namespace blog03.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ServiceResult<string>> InsertPostAsync([FromBody] PostDto dto)
         {
             try
@@ -36,12 +38,14 @@ namespace blog03.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         public async Task<ServiceResult> DeletePostAsync([Required] int id)
         {
             return await _blogService.DeletePostAsync(id);
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<ServiceResult<string>> UpdatePostAsync([Required] int id, [FromBody] PostDto dto)
         {
             return await _blogService.UpdatePostAsync(id, dto);

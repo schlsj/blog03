@@ -26,6 +26,12 @@ namespace blog03.Swagger.Filters
                     Description="通用公共接口",
                     ExternalDocs=new OpenApiExternalDocs{Description="这里是一些通用的公共接口"},
                 },
+                new OpenApiTag
+                {
+                    Name="Auth",
+                    Description="JWT模式认证授权",
+                    ExternalDocs=new OpenApiExternalDocs{Description="Json Web Token"},
+                },
             };
             swaggerDoc.Tags = tags.OrderBy(x => x.Name).ToList();
         }

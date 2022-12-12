@@ -1,8 +1,12 @@
+using blog03.Configurations;
 using blog03.Swagger;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Autofac;
@@ -21,6 +25,23 @@ public class blog03HttpApiHostingModule : AbpModule
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         base.ConfigureServices(context);
+        context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.FromSeconds(30),
+                    ValidateIssuerSigningKey = true,
+                    ValidAudience = AppSettings.JWT.Domain,
+                    ValidIssuer = AppSettings.JWT.Domain,
+                    IssuerSigningKey = new SymmetricSecurityKey(AppSettings.JWT.SecurityKey.GetBytes()),
+                };
+            });
+        context.Services.AddAuthentication();
+        context.Services.AddHttpClient();
         //Configuration.Modules.AbpWebCommon().SendAllExceptionsToClients = false;
     }
 
@@ -36,6 +57,8 @@ public class blog03HttpApiHostingModule : AbpModule
 
         //app.UseStaticFiles();
         app.UseRouting();
+        app.UseAuthentication();
+        app.UseAuthorization();
         app.UseConfiguredEndpoints();
     }
 }
