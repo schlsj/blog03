@@ -26,5 +26,12 @@ namespace blog03.Controllers
         {
             return _helloWorldService.HelloWorld();
         }
+
+        [HttpGet]
+        [Route("Exception")]
+        public string Exception()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
