@@ -8,12 +8,10 @@ namespace blog03.ToolKits.Extensions
 {
     public static class Log4NetExtensions
     {
-        public static IHostBuilder UseLog4Net(this IHostBuilder hostBuilder)
+        public static void UseLog4Net()
         {
             var log4netRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
-            XmlConfigurator.Configure(log4netRepository, new FileInfo("Resources/log4net.config"));
-
-            return hostBuilder;
+            XmlConfigurator.Configure(log4netRepository, new FileInfo("log4net.config"));
         }
     }
 }
