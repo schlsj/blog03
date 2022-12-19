@@ -1,3 +1,5 @@
+using blog03.BackgroundJobs;
+using blog03.BackgroundJobs.Jobs;
 using blog03.Configurations;
 using blog03.Swagger;
 using blog03.ToolKits.Base;
@@ -8,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +26,7 @@ using Volo.Abp.Modularity;
 namespace blog03.Web;
 
 [DependsOn(
+    typeof(blog03BackgroundJobsModule),
     typeof(blog03SwaggerModule),
     typeof(blog03HttpApiModule),
     typeof(AbpAspNetCoreMvcModule),
@@ -70,6 +74,13 @@ public class blog03HttpApiHostingModule : AbpModule
             options.Filters.Remove(filterMetadata);
             options.Filters.Add(typeof(blog03ExceptionFilter));
         });
+        context.Services.AddRouting(options =>
+        {
+            options.LowercaseUrls = true;
+            options.AppendTrailingSlash = true;
+        });
+        //context.Services.AddTransient<IHostedService, HelloWorldJob>();
+        context.Services.AddMvcCore();
         //Configuration.Modules.AbpWebCommon().SendAllExceptionsToClients = false;
     }
 
@@ -78,6 +89,11 @@ public class blog03HttpApiHostingModule : AbpModule
         var app = context.GetApplicationBuilder();
         var env = context.GetEnvironment();
 
+        app.UseHsts();
+        app.UseForwardedHeaders(new ForwardedHeadersOptions
+        {
+            ForwardedHeaders = ForwardedHeaders.XForwardedFor|ForwardedHeaders.XForwardedProto
+        });
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
@@ -85,9 +101,15 @@ public class blog03HttpApiHostingModule : AbpModule
 
         //app.UseStaticFiles();
         app.UseRouting();
+        app.UseCors();
         app.UseMiddleware<ExceptionHandlerMiddleware>();
         app.UseAuthentication();
         app.UseAuthorization();
+        app.UseHttpsRedirection();
         app.UseConfiguredEndpoints();
+        //app.UseEndpoints(endpoints =>
+        //{
+        //    endpoints.MapControllers();
+        //});
     }
 }

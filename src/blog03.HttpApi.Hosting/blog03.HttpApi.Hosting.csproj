@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\blog03.BackgroundJobs\blog03.BackgroundJobs.csproj" />
     <ProjectReference Include="..\blog03.HttpApi\blog03.HttpApi.csproj" />
     <ProjectReference Include="..\blog03.Swagger\blog03.Swagger.csproj" />
   </ItemGroup>

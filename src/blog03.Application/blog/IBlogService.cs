@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace blog03.blog
 {
-    public interface IBlogService
+    public partial interface IBlogService
     {
         Task<ServiceResult<string>> InsertPostAsync(PostDto dto);
         Task<ServiceResult> DeletePostAsync(int id);

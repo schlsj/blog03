@@ -54,6 +54,28 @@ namespace blog03.EntityFrameworkCore
                 b.Property(x => x.Title).HasMaxLength(20).IsRequired();
                 b.Property(x => x.LinkUrl).HasMaxLength(100).IsRequired();
             });
+
+            builder.Entity<blog03.Wallpaper.Wallpaper>(b =>
+            {
+                b.ToTable(blog03Consts.DbTablePrefix + DbTableName.Wallpapers);
+                b.HasKey(x => x.Id);
+                b.Property(x => x.Id).ValueGeneratedOnAdd();
+                b.Property(x => x.Url).HasMaxLength(200).IsRequired();
+                b.Property(x => x.Title).HasMaxLength(100).IsRequired();
+                b.Property(x => x.Type).HasColumnType("int").IsRequired();
+                b.Property(x => x.CreateTime).HasColumnType("datetime").IsRequired();
+            });
+
+            builder.Entity<blog03.HotNews.HotNews>(b =>
+            {
+                b.ToTable(blog03Consts.DbTablePrefix + DbTableName.HotNews);
+                b.HasKey(x => x.Id);
+                b.Property(x => x.Id).ValueGeneratedOnAdd();
+                b.Property(x => x.Title).HasMaxLength(200).IsRequired();
+                b.Property(x => x.Url).HasMaxLength(250).IsRequired();
+                b.Property(x => x.SourceId).HasColumnType("int").IsRequired();
+                b.Property(x => x.CreateTime).HasColumnType("datetime").IsRequired();
+            });
         }
     }
 }

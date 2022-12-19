@@ -14,6 +14,9 @@ namespace blog03.EntityFrameworkCore
         public DbSet<PostTag> PostTags { get; set; }
         public DbSet<FriendLink> FriendLinks { get; set; }
 
+        public DbSet<blog03.Wallpaper.Wallpaper> Wallpapers { get; set; }
+        public DbSet<blog03.HotNews.HotNews> HotNews { get; set; }
+
         public blog03DbContext(DbContextOptions<blog03DbContext> options) : base(options)
         {
 

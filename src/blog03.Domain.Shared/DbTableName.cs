@@ -7,5 +7,7 @@
         public const string Tags = "Tags";
         public const string PostTags = "Post_Tags";
         public const string Friendlinks = "Friendlinks";
+        public const string Wallpapers = "Wallpapers";
+        public const string HotNews = "HotNews";
     }
 }
