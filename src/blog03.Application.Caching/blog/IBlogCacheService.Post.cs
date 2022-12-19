@@ -6,5 +6,6 @@ namespace blog03.Application.Caching.blog
     public partial interface IBlogCacheService
     {
         Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsAsync(PagingInput input, Func<Task<ServiceResult<PagedList<QueryPostDto>>>> factory);
+        Task<ServiceResult<PostDetailDto>> GetPostDetailAsync(string url, Func<Task<ServiceResult<PostDetailDto>>> factory);
     }
 }

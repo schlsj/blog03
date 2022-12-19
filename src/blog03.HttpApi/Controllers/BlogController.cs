@@ -21,6 +21,20 @@ namespace blog03.Controllers
             _blogService = blogService;
         }
 
+        [HttpGet]
+        [Route("posts")]
+        public async Task<ServiceResult<PagedList<QueryPostDto>>> QueryPostsAsync([FromQuery] PagingInput input)
+        {
+            return await _blogService.QueryPostsAsync(input);
+        }
+
+        [HttpGet]
+        [Route("post")]
+        public async Task<ServiceResult<PostDetailDto>> GetPostDetailAsync(string url)
+        {
+            return await _blogService.GetPostDetailAsync(url);
+        }
+
         [HttpPost]
         [Authorize]
         public async Task<ServiceResult<string>> InsertPostAsync([FromBody] PostDto dto)

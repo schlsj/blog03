@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 using blog03.DbMigrator.EntityFrameworkCore;
@@ -11,9 +12,10 @@ using blog03.DbMigrator.EntityFrameworkCore;
 namespace blog03.DbMigrator.Migrations
 {
     [DbContext(typeof(blog03DbMigratorDbContext))]
-    partial class blog03DbMigratorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221219024315_add-background-job")]
+    partial class addbackgroundjob
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
