@@ -3,6 +3,7 @@ using blog03.ToolKits.Base;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc;
@@ -33,6 +34,36 @@ namespace blog03.Controllers
         public async Task<ServiceResult<PostDetailDto>> GetPostDetailAsync(string url)
         {
             return await _blogService.GetPostDetailAsync(url);
+        }
+
+        [HttpGet]
+        [Route("posts/category")]
+        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByCategoryAsync([Required] string name)
+        {
+            return await _blogService.QueryPostsByCategoryAsync(name);
+        }
+
+        [HttpGet]
+        [Route("categories")]
+        public async Task<ServiceResult<IEnumerable<QueryCategoryDto>>> QueryCategoriesAsync()
+        {
+            return await _blogService.QueryCategoriesAsync();
+        }
+
+        [HttpGet]
+        [Route("category")]
+        public async Task<ServiceResult<string>> GetCategoryAsync([Required] string name)
+        {
+            return await _blogService.GetCategoryAsync(name);
+        }
+
+
+
+        [HttpGet]
+        [Route("tags")]
+        public async Task<ServiceResult<IEnumerable<QueryTagDto>>> QueryTagsAsync()
+        {
+            return await _blogService.QueryTagsAsync();
         }
 
         [HttpPost]

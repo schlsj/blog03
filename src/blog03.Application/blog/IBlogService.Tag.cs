@@ -1,12 +1,11 @@
-﻿using System;
+﻿using blog03.ToolKits.Base;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace blog03.blog
 {
     public partial interface IBlogService
     {
+        Task<ServiceResult<IEnumerable<QueryTagDto>>> QueryTagsAsync();
     }
 }
